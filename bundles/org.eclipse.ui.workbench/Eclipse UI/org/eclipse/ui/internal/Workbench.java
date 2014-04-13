@@ -724,7 +724,7 @@ public final class Workbench extends EventManager implements IWorkbench,
 		// setup the application name used by SWT to lookup resources on some
 		// platforms
 		String applicationName = WorkbenchPlugin.getDefault().getAppName();
-		if (applicationName != null) {
+		if (applicationName != null && !"eclipse".equalsIgnoreCase(applicationName)) { //$NON-NLS-1$
 			Display.setAppName(applicationName);
 		}
 
