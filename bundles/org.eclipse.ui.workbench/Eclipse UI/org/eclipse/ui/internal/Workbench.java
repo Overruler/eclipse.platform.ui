@@ -19,8 +19,6 @@
 
 package org.eclipse.ui.internal;
 
-import com.ibm.icu.util.ULocale;
-import com.ibm.icu.util.ULocale.Category;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,6 +28,7 @@ import java.io.StringWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -259,6 +258,7 @@ import org.eclipse.ui.themes.IThemeManager;
 import org.eclipse.ui.views.IViewDescriptor;
 import org.eclipse.ui.views.IViewRegistry;
 import org.eclipse.ui.wizards.IWizardRegistry;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.Constants;
@@ -266,6 +266,8 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.framework.SynchronousBundleListener;
 import org.osgi.service.event.EventHandler;
 import org.osgi.util.tracker.ServiceTracker;
+import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.ULocale.Category;
 
 /**
  * The workbench class represents the top of the Eclipse user interface. Its
@@ -641,6 +643,19 @@ public final class Workbench extends EventManager implements IWorkbench,
 					}
 					MApplication appModel = e4Workbench.getApplication();
 					setSearchContribution(appModel, true);
+					// add custom fonts before running workbench
+					String fontList = Platform.getProduct().getProperty("fontList");
+					if(fontList != null) {
+						String[] fonts = fontList.split(",");
+						Bundle bundle = Platform.getProduct().getDefiningBundle();
+						if(bundle != null) {
+							String location = bundle.getLocation().replace("reference:file:", "");
+							for(String font : fonts) {
+								String file = Paths.get(location, font).toAbsolutePath().toString();
+								display.loadFont(file);
+							}
+						}
+					}
 					// run the legacy workbench once
 					returnCode[0] = workbench.runUI();
 					if (returnCode[0] == PlatformUI.RETURN_OK) {
