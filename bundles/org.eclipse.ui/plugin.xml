@@ -134,10 +134,6 @@
             sequence="F2"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />
       <key
-            commandId="org.eclipse.ui.file.print"
-            sequence="M1+P"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />
-      <key
             commandId="org.eclipse.ui.file.properties"
             sequence="M3+CR"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />
@@ -213,7 +209,15 @@
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />
       <key
             commandId="org.eclipse.ui.edit.findReplace"
-            sequence="M1+F"
+            sequence="M3+R"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />
+      <key
+            commandId="org.eclipse.ui.navigate.previousTab"
+            sequence="M1+M2+Tab"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />
+      <key
+            commandId="org.eclipse.ui.navigate.nextTab"
+            sequence="M1+Tab"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />
       <key
             commandId="org.eclipse.ui.navigate.next"
@@ -293,19 +297,10 @@
             sequence="M1+F10"
             contextId="org.eclipse.ui.contexts.dialogAndWindow"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />
-      <key
-            commandId="org.eclipse.ui.window.activateEditor"
-            sequence="F12"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />
       <!-- F12 is the Dashboard on carbon -->
       <key
-            platform="carbon"
-            sequence="F12"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />
-      <key
             commandId="org.eclipse.ui.window.activateEditor"
-            platform="carbon"
-            sequence="M1+F12"
+            sequence="M1+M2+M3+F12"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />
       <key
             commandId="org.eclipse.ui.window.maximizePart"
